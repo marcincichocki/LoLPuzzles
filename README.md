@@ -10,6 +10,7 @@ _[nodejs is requeired](http://nodejs.org/)_
 Clone, cd into created directory and run:
 
 `$ npm install`
+
 `$ npm start [--api_key=YOUR-API-KEY-GOES-HERE]`
 
 Then visit [localhost:8080](http://localhost:8080) in your browser.
