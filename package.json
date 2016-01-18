@@ -1,0 +1,38 @@
+{
+  "name": "LoLPuzzles",
+  "version": "0.1.0",
+  "description": "Check how well you know champions' splash arts!",
+  "scripts": {
+    "start": "npm run pull && webpack-dev-server --inline --progress --profile --colors --display-error-details --display-cached",
+    "build:prod": "webpack --config webpack.prod.config.js --progress --profile --colors --display-error-details --display-cached",
+    "pull": "node ./src/data/pull",
+    "start:prod": "npm run build:prod && http-server -p 8080 -o"
+  },
+  "author": "Marcin Cichocki",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcincichocki/LoLPuzzles.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcincichocki/LoLPuzzles/issues"
+  },
+  "homepage": "https://github.com/marcincichocki/LoLPuzzles",
+  "dependencies": {
+    "angular2": "2.0.0-beta.0",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
+    "zone.js": "0.5.10"
+  },
+  "devDependencies": {
+    "http-server": "^0.8.5",
+    "json-loader": "^0.5.4",
+    "raw-loader": "^0.5.1",
+    "ts-loader": "^0.7.2",
+    "typescript": "^1.7.5",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
+  }
+}

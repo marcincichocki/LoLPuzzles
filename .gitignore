@@ -1,0 +1,12 @@
+node_modules/
+
+# Visual Studio Code
+.vscode/
+
+npm-debug.log
+
+# transpiled files
+dist/
+
+# downloaded splash arts data.
+src/data/images.json

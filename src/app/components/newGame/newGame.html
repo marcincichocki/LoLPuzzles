@@ -1,0 +1,11 @@
+<!-- splash art info -->
+<splash-art-info-component
+  *ngIf="cs.champion"
+  [champion]="cs.champion">
+</splash-art-info-component>
+
+<!-- Canvas wrapper -->
+<foreground-component></foreground-component>
+<score-component></score-component>
+<button (click)="cs.startNewGame()" [disabled]="cs.preview">New game</button>
+<span [hidden]="!cs.loading">Loading...</span>

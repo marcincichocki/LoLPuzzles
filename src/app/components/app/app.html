@@ -1,0 +1,15 @@
+<div class="container">
+  <header>
+    <nav>
+      <a class="btn" [routerLink]="['/' + routes.foreground.as]">
+        <h1>LoL Puzzles</h1>
+      </a>
+      <a class="btn" [routerLink]="['/' + routes.highscores.as]">
+        {{ routes.highscores.as }}
+      </a>
+    </nav>
+  </header>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</div>
