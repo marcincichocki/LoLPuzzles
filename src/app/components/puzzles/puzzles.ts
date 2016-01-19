@@ -123,7 +123,7 @@ export class PuzzlesComponent extends Layer {
       for (let col: number = 0; col < cols; col += 1) {
 
         // Generate random row and col.
-        const {row: rRow, col: rCol} = getRandomCell();
+        const {row: rRow, col: rCol} = getRandomCell(row, col);
 
         // Calculate positions of piece and image.
         const sx = (this.cs.dWidth * col) / this.cs.ratio;

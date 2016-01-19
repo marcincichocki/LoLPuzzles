@@ -94,7 +94,7 @@ export class GameService {
    * @param {number} cols - Amount of cols, 1-based.
    * @returns {Function} Function that return unique cell.
    */
-  public raffle(rows: number, cols: number): () => Cell {
+  public raffle(rows: number, cols: number): (row: number, col: number) => Cell {
 
     /**
      * Array contains every cell. We will get elements
@@ -112,7 +112,15 @@ export class GameService {
     // Randomize them.
     cells.sort(() => 0.5 - Math.random());
 
-    // Return closure.
-    return () => cells.pop();
+    /**
+     * Get random cell that is NOT in given row and column.
+     * @param {number} row - Row of piece.
+     * @param {number} col - Column of piece.
+     * @returns {Piece} Unique cell.
+     */
+    return (row, col) =>
+      ((cells[cells.length - 1].col !== col) && (cells[cells.length - 1].row !== row))
+        ? cells.pop()
+        : cells.shift();
   }
 }
