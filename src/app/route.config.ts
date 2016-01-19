@@ -1,4 +1,4 @@
-import {NewGameComponent} from './components/newGame/newGame';
+import {NewGameComponent} from './components/game/game';
 import {HighscoresComponent} from './components/highscores/highscores';
 
 
