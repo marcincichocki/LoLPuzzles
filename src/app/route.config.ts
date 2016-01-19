@@ -6,7 +6,8 @@ export var Routes = {
   game: {
     path: '/game',
     name: 'Game',
-    component: NewGameComponent
+    component: NewGameComponent,
+    useAsDefault: true
   },
   highscores: {
     path: '/highscores',
