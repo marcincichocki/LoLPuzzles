@@ -1,12 +1,11 @@
 <div class="container">
   <header>
+    <a href="/">
+      <h1>LoL Puzzles</h1>
+    </a>
     <nav>
-      <a class="btn" [routerLink]="['/' + routes.foreground.as]">
-        <h1>LoL Puzzles</h1>
-      </a>
-      <a class="btn" [routerLink]="['/' + routes.highscores.as]">
-        {{ routes.highscores.as }}
-      </a>
+      <a [routerLink]="['/' + routes.game.name]">Play</a>
+      <a [routerLink]="['/' + routes.highscores.name]">Highscores</a>
     </nav>
   </header>
   <section>
