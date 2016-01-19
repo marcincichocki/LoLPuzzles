@@ -147,12 +147,6 @@ export class PuzzlesComponent extends Layer {
       }
     }
 
-    // Redraw image if puzzle is solved alredy(yeah, no luck allowed).
-    if ( this.gs.isSolved() ) {
-      return this.shuffle();
-    }
-
-
     this.cs.preview = false;
   }
 
