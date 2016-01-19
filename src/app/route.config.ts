@@ -3,9 +3,9 @@ import {HighscoresComponent} from './components/highscores/highscores';
 
 
 export var Routes = {
-  foreground: {
-    path: '/',
-    name: 'New game',
+  game: {
+    path: '/game',
+    name: 'Game',
     component: NewGameComponent
   },
   highscores: {
