@@ -1,4 +1,4 @@
-import {NewGameComponent} from './components/game/game';
+import {GameComponent} from './components/game/game';
 import {HighscoresComponent} from './components/highscores/highscores';
 
 
@@ -6,7 +6,7 @@ export var Routes = {
   game: {
     path: '/game',
     name: 'Game',
-    component: NewGameComponent,
+    component: GameComponent,
     useAsDefault: true
   },
   highscores: {

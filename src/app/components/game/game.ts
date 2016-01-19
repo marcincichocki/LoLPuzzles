@@ -6,14 +6,14 @@ import {ForegroundComponent} from '../foreground/foreground';
 import {CanvasService} from '../../services/canvas/canvas.service';
 
 @Component({
-  selector: 'new-game-component',
-  template: require('./newGame.html'),
+  selector: 'game-component',
+  template: require('./game.html'),
   directives: [
     ScoreComponent,
     SplashArtInfoComponent,
     ForegroundComponent
   ]
 })
-export class NewGameComponent {
+export class GameComponent {
   constructor(public cs: CanvasService) { }
 }
