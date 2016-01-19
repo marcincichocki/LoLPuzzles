@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "Check how well you know champions' splash arts!",
   "scripts": {
-    "start": "npm run pull && webpack-dev-server --inline --progress --profile --colors --display-error-details --display-cached",
+    "start": "npm run pull && webpack-dev-server --inline --progress --profile --colors --display-error-details --display-cached --history-api-fallback",
     "build:prod": "webpack --config webpack.prod.config.js --progress --profile --colors --display-error-details --display-cached",
     "pull": "node ./src/data/pull",
     "start:prod": "npm run build:prod && http-server -p 8080 -o"
