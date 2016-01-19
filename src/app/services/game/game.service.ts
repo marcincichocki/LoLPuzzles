@@ -116,7 +116,7 @@ export class GameService {
      * Get random cell that is NOT in given row and column.
      * @param {number} row - Row of piece.
      * @param {number} col - Column of piece.
-     * @returns {Piece} Unique cell.
+     * @returns {Cell} Unique cell.
      */
     return (row, col) =>
       ((cells[cells.length - 1].col !== col) && (cells[cells.length - 1].row !== row))
