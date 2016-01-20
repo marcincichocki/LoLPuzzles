@@ -7,23 +7,6 @@ import {Champion} from './Champion';
 @Injectable()
 export class CanvasService {
 
-
-  // Events.
-  // ==========================================================================
-
-
-  // Emit after image is loaded.
-  public imageLoaded: EventEmitter<{}> = new EventEmitter();
-
-  // Even click. Emits index of clicked piece.
-  public select: EventEmitter<number> = new EventEmitter();
-
-  /**
-   * Consecutive(basicly this mean odd) click on canvas.
-   * Emits index of clicked piece.
-   */
-  public swap: EventEmitter<number> = new EventEmitter();
-
   /**
    * Store amount of clicks on canvas. Even clicks emit select
    * event, where odd clicks emit swap events.
