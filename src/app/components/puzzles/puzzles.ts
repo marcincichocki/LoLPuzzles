@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from 'angular2/core';
+import {Component} from 'angular2/core';
 
 import {Layer} from '../layer/layer';
 import {CanvasService} from '../../services/canvas/canvas.service';
@@ -8,7 +8,6 @@ import {EventService} from '../../services/event/event.service';
 
 @Component({
   selector: 'puzzles-component',
-  outputs: ['resolved'],
   template: require('../layer/layer.html'),
   styles: [`
     canvas {
@@ -20,13 +19,6 @@ export class PuzzlesComponent extends Layer {
 
   // Store selected index.
   private firstIndex: number = null;
-
-  /**
-   * Success event. Foreground component can subscribe to it,
-   * and run a callback.
-   */
-  private resolved: EventEmitter<any> = new EventEmitter();
-
 
   /**
    * Puzzle's constructor. It is a canvas layer on which puzzle
