@@ -21,9 +21,12 @@ export class Layer implements AfterViewInit, OnDestroy {
   // 2d context.
   public context: CanvasRenderingContext2D = null;
 
-  // Events which every layer will subscribe to.
+  // Events which every layer might subscribe to.
   public event = {
-    imageLoaded: null,
+    gameStart: null,
+    gameEnd: null,
+    resolved: null,
+    shuffle: null,
     select: null,
     swap: null
   };
@@ -42,7 +45,9 @@ export class Layer implements AfterViewInit, OnDestroy {
    */
   ngOnDestroy(): void {
     Object.keys(this.event).forEach((key) => {
-      this.event[key].unsubscribe();
+      try {
+        this.event[key].unsubscribe();
+      } catch(e) { }
     });
   }
 

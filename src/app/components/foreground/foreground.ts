@@ -2,6 +2,7 @@ import {Component, ViewChild, ViewEncapsulation, Renderer, AfterViewInit, OnDest
 import {Observable, Subscription} from 'rxjs/Rx';
 
 import {CanvasService} from '../../services/canvas/canvas.service';
+import {EventService} from '../../services/event/event.service';
 import {LinesComponent} from '../lines/lines';
 import {PuzzlesComponent} from '../puzzles/puzzles';
 
@@ -28,7 +29,7 @@ export class ForegroundComponent implements AfterViewInit, OnDestroy {
    * for canvas layers. It emits specific click and image load events.
    * @param {CanvasService} cs - Provide data about canvas.
    */
-  constructor(public cs: CanvasService, public renderer: Renderer) {
+  constructor(public cs: CanvasService, public es: EventService, public renderer: Renderer) {
 
     /**
      * Listen for image load events. Because Riot servers might be
@@ -46,7 +47,7 @@ export class ForegroundComponent implements AfterViewInit, OnDestroy {
         this.renderer.setElementStyle(this.element, 'width', `${this.cs.cWidth}px`);
         this.renderer.setElementStyle(this.element, 'height', `${this.cs.cHeight}px`);
 
-        this.cs.imageLoaded.emit(null);
+        this.es.gameStart.emit(null);
        });
 
     // Something went wrong. Let's try to load another image.
@@ -119,11 +120,11 @@ export class ForegroundComponent implements AfterViewInit, OnDestroy {
 
     // On even clicks, emit selection.
     if ( !(this.cs.clicks++ % 2) ) {
-      this.cs.select.emit(index);
+      this.es.select.emit(index);
 
     // On odd, emit swap.
     } else {
-      this.cs.swap.emit(index);
+      this.es.swap.emit(index);
     }
   }
 }

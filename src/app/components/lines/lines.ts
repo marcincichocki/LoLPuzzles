@@ -3,6 +3,7 @@ import {Component} from 'angular2/core';
 import {Layer} from '../layer/layer';
 import {CanvasService} from '../../services/canvas/canvas.service';
 import {GameService} from '../../services/game/game.service';
+import {EventService} from '../../services/event/event.service';
 
 
 @Component({
@@ -31,22 +32,22 @@ export class LinesComponent extends Layer {
    * @param {GameService} gs - Store game specific data.
    * @param {CanvasService} cs - Provide data about canvas.
    */
-  constructor(public gs: GameService, public cs: CanvasService) {
+  constructor(public gs: GameService, public cs: CanvasService, public es: EventService) {
 
     // Call parent constructor. Creates basic canvas playground.
     super();
 
     // Subscribe to events.
-    this.event.imageLoaded = this.cs.imageLoaded.subscribe(() => {
+    this.event.gameStart = this.es.gameStart.subscribe(() => {
       this.updateSize(this.cs.cWidth, this.cs.cHeight);
 
       this.clockStart = Date.now();
       this.animateClock();
     });
 
-    this.event.select = this.cs.select.subscribe((index) => this.select(index));
+    this.event.select = this.es.select.subscribe((index) => this.select(index));
 
-    this.event.swap = this.cs.swap.subscribe((index) => this.drawLines());
+    this.event.swap = this.es.swap.subscribe((index) => this.drawLines());
   }
 
 

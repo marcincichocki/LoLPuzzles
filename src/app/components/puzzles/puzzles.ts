@@ -3,6 +3,7 @@ import {Component, EventEmitter, Output} from 'angular2/core';
 import {Layer} from '../layer/layer';
 import {CanvasService} from '../../services/canvas/canvas.service';
 import {GameService} from '../../services/game/game.service';
+import {EventService} from '../../services/event/event.service';
 
 
 @Component({
@@ -33,13 +34,13 @@ export class PuzzlesComponent extends Layer {
    * @param {GameService} gs - Store game specific data.
    * @param {CanvasService} cs - Provide data about canvas.
    */
-  constructor(private gs: GameService, private cs: CanvasService) {
+  constructor(private gs: GameService, private cs: CanvasService, private es: EventService) {
 
     // Call parent constructor. Creates basic canvas playground.
     super();
 
     // Subscribe to events.
-    this.event.imageLoaded = this.cs.imageLoaded.subscribe(() => {
+    this.event.gameStart = this.es.gameStart.subscribe(() => {
       this.updateSize(this.cs.cWidth, this.cs.cHeight);
 
       this.context.clearRect(0, 0, this.cs.cWidth, this.cs.cHeight);
@@ -48,11 +49,11 @@ export class PuzzlesComponent extends Layer {
       window.setTimeout(this.shuffle.bind(this), this.gs.timeout * 1000);
     });
 
-    this.event.select = this.cs.select.subscribe((index) => {
+    this.event.select = this.es.select.subscribe((index) => {
       this.firstIndex = index;
     });
 
-    this.event.swap = this.cs.swap.subscribe((index) => {
+    this.event.swap = this.es.swap.subscribe((index) => {
       const resolved = this.swap(this.firstIndex, index, true);
 
       // TODO: Refector this...
