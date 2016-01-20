@@ -65,10 +65,16 @@ export class PuzzlesComponent extends Layer {
         )
       );
 
-      // TODO: Some nice looking confirm modal.
       // Puzzle is resolved!
-      if (resolved && confirm('Nice job! Next level?')) {
-        this.resolved.emit(null);
+      if (resolved) {
+
+        // Reset timer.
+        this.es.resolved.emit(null);
+
+        // TODO: Some nice looking confirm modal.
+        if (confirm('Nice job! Next level?')) {
+          this.cs.loadNewImage();
+        }
       }
     });
   }
