@@ -17,12 +17,6 @@ import {EventService} from '../../services/event/event.service';
 })
 export class LinesComponent extends Layer {
 
-  // "Clock" is expressed as full circle.
-  private degrees: number = 360;
-
-  // Time in milliseconds when previous frame of clock was displayed.
-  private clockStart: number = null;
-
 
 
   /**
@@ -53,84 +47,6 @@ export class LinesComponent extends Layer {
     this.event.swap = this.es.swap.subscribe((index) => this.drawLines());
   }
 
-
-  /**
-   * Draw area of circle to given radians from 0.
-   * @param {number} to - Radian value to be drawed to.
-   */
-  private drawClock(to: number): void {
-
-    // Save current styles.
-    this.context.save();
-
-    // Styles.
-    this.context.strokeStyle = '#fff';
-    this.context.lineWidth = 3;
-
-    // Start path.
-    this.context.beginPath();
-
-    // Make line from center to circle border.
-    this.context.moveTo(this.cs.cWidth / 2, this.cs.cHeight / 2);
-    this.context.lineTo(this.cs.cWidth / 2 + this.cs.dWidth * 0.7, this.cs.cHeight / 2);
-
-    // Create arc with length of [to].
-    this.context.arc(this.cs.cWidth / 2, this.cs.cHeight / 2, this.cs.dWidth * 0.7, 0, to, false);
-
-    // Make line to center and close path.
-    this.context.lineTo(this.cs.cWidth / 2, this.cs.cHeight / 2);
-    this.context.closePath();
-
-    // Draw it!
-    this.context.stroke();
-
-    // Restore styles after job.
-    this.context.restore();
-  }
-
-
-  /**
-   * Animate clock with fixed time.
-   */
-  private animateClock(): void {
-
-    // Current time.
-    const now = Date.now();
-
-    // Time difference between last frame and current one in miliseconds.
-    const delta = now - this.clockStart || 1;
-
-    // Degrees to be drawed to in current frame.
-    const degreesCurrentFrame = (360 / this.gs.timeout) * delta / 1000;
-    this.degrees -= degreesCurrentFrame;
-
-    // No more clocks to draw?
-    if (this.degrees <= 0) {
-
-      // Reset clock before next animation.
-      this.degrees = 360;
-
-      // Draw lines.
-      this.drawLines();
-
-      // Quit.
-      return;
-    }
-
-    // Set new time for starting frame.
-    this.clockStart = now;
-
-    // Count radians.
-    const radians = (this.degrees * Math.PI) / 180;
-
-    // Redraw clock.
-    this.context.clearRect(0, 0, this.cs.cWidth, this.cs.cHeight);
-    this.drawClock(radians);
-
-    // TODO: Use various prefixed raf for better support.
-    // Let browser handle animation.
-    window.requestAnimationFrame(this.animateClock.bind(this));
-  }
 
 
   /**
