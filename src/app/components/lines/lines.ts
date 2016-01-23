@@ -38,11 +38,14 @@ export class LinesComponent extends Layer {
     super();
 
     // Subscribe to events.
-    this.event.gameStart = this.es.gameStart.subscribe(() => {
-      this.updateSize(this.cs.cWidth, this.cs.cHeight);
+    this.event.gameStart = this.es.gameStart.subscribe(() => this.updateSize(this.cs.cWidth, this.cs.cHeight));
 
-      this.clockStart = Date.now();
-      this.animateClock();
+    this.event.shuffle = this.es.shuffle.subscribe(() => this.drawLines());
+
+    this.event.gameEnd = this.es.gameEnd.subscribe(() => {
+      this.drawLines();
+
+      // Game over
     });
 
     this.event.select = this.es.select.subscribe((index) => this.select(index));

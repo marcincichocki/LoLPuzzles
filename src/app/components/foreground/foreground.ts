@@ -3,6 +3,7 @@ import {Observable, Subscription} from 'rxjs/Rx';
 
 import {CanvasService} from '../../services/canvas/canvas.service';
 import {EventService} from '../../services/event/event.service';
+import {TimerComponent} from '../timer/timer';
 import {LinesComponent} from '../lines/lines';
 import {PuzzlesComponent} from '../puzzles/puzzles';
 
@@ -10,6 +11,7 @@ import {PuzzlesComponent} from '../puzzles/puzzles';
 @Component({
   selector: 'foreground-component',
   directives: [
+    TimerComponent,
     LinesComponent,
     PuzzlesComponent
   ],

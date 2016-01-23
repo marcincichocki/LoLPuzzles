@@ -37,9 +37,9 @@ export class PuzzlesComponent extends Layer {
 
       this.context.clearRect(0, 0, this.cs.cWidth, this.cs.cHeight);
       this.context.drawImage(this.cs.image, 0, 0, this.cs.cWidth, this.cs.cHeight);
-
-      window.setTimeout(this.shuffle.bind(this), this.gs.timeout * 1000);
     });
+
+    this.event.shuffle = this.es.shuffle.subscribe(() => this.shuffle());
 
     this.event.select = this.es.select.subscribe((index) => {
       this.firstIndex = index;
@@ -64,9 +64,11 @@ export class PuzzlesComponent extends Layer {
         this.es.resolved.emit(null);
 
         // TODO: Some nice looking confirm modal.
-        if (confirm('Nice job! Next level?')) {
+        // Wait for timer to stop before loading new image.
+        window.setTimeout(() => {
+          window.alert('Level complete! Next?')
           this.cs.loadNewImage();
-        }
+        }, 0);
       }
     });
   }
