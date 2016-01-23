@@ -119,7 +119,7 @@ export class GameService {
      * @returns {Cell} Unique cell.
      */
     return (row, col) =>
-      ((cells[cells.length - 1].col !== col) && (cells[cells.length - 1].row !== row))
+      ((cells[cells.length - 1].row !== row) || (cells[cells.length - 1].col !== col))
         ? cells.pop()
         : cells.shift();
   }
