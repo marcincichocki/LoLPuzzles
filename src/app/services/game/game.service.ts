@@ -2,6 +2,7 @@ import {Injectable} from 'angular2/core';
 
 import {Piece} from './Piece';
 import {Cell} from './Cell';
+import {Timer} from './Timer';
 
 
 @Injectable()
@@ -15,7 +16,13 @@ export class GameService {
 
   // Amount of time in seconds, in which preview of image will be
   // displayed, and after which pieces will be created and randomized.
-  public timeout: number = 5;
+  public previewDuration: number = 5;
+
+  // Time in seconds that user have on solving the puzzle.
+  public levelDuration: number = 20;
+
+  // Reference for "level timer", so we can cancel it if user solve the puzzle.
+  public levelTimer: Timer = null;
 
 
   /**
